@@ -3,1208 +3,900 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Globix Tecnología | Premium Digital Services</title>
-    <meta name="description" content="Servicios premium de música sin límites y navegación sin publicidad. Globix Tecnología - Tu puerta al entretenimiento limpio.">
+    <title>Globix Tecnología | Experiencias Digitales Sin Límites</title>
+    <meta name="description" content="Servicios digitales premium: Spotify, CapCut Pro, Bloqueo de ADS. Calidad garantizada y precios accesibles.">
     
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Icons -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        globix: {
+                            dark: '#0a0a0f',
+                            card: 'rgba(20, 20, 30, 0.6)',
+                            primary: '#00d4ff',
+                            secondary: '#7000ff',
+                            accent: '#00ff9d'
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 5px #00d4ff, 0 0 10px #00d4ff' },
+                            '100%': { boxShadow: '0 0 20px #00d4ff, 0 0 30px #00d4ff' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        :root {
-            --primary-bg: #0a0a0f;
-            --secondary-bg: #12121a;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --accent-cyan: #00f2ff;
-            --accent-purple: #b829ff;
-            --accent-pink: #ff2975;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0b0;
-            --success: #00ff88;
-            --warning: #ffb800;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            font-family: 'Outfit', sans-serif;
-            background: var(--primary-bg);
-            color: var(--text-primary);
+            background-color: #0a0a0f;
+            color: #ffffff;
             overflow-x: hidden;
-            line-height: 1.6;
         }
-
-        /* Animated Background */
-        .bg-gradient {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(184, 41, 255, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(0, 242, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 20%, rgba(255, 41, 117, 0.1) 0%, transparent 50%);
-            filter: blur(80px);
-            animation: bgPulse 10s ease-in-out infinite alternate;
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
-        @keyframes bgPulse {
-            0% { transform: scale(1); opacity: 0.8; }
-            100% { transform: scale(1.1); opacity: 1; }
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1.5rem 5%;
+        
+        .glass-strong {
+            background: rgba(20, 20, 30, 0.7);
             backdrop-filter: blur(20px);
-            background: rgba(10, 10, 15, 0.8);
-            border-bottom: 1px solid var(--glass-border);
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
-        .logo {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #00d4ff 0%, #7000ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            background-clip: text;
         }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
+        
+        .hero-gradient {
+            background: radial-gradient(ellipse at top, rgba(112, 0, 255, 0.3), transparent 70%),
+                        radial-gradient(ellipse at bottom, rgba(0, 212, 255, 0.2), transparent 70%);
         }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+            border-color: rgba(0, 212, 255, 0.5);
+        }
+        
+        .price-strike {
             position: relative;
+            color: #6b7280;
+            font-size: 0.875rem;
         }
-
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
-        .nav-links a::after {
+        
+        .price-strike::after {
             content: '';
             position: absolute;
-            bottom: -5px;
             left: 0;
+            top: 50%;
+            width: 100%;
+            height: 1px;
+            background-color: #ef4444;
+            transform: rotate(-5deg);
+        }
+        
+        .discount-price {
+            color: #00ff9d;
+            font-weight: 800;
+            font-size: 1.5rem;
+            text-shadow: 0 0 20px rgba(0, 255, 157, 0.3);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            bottom: -4px;
+            left: 0;
+            background-color: #00d4ff;
             transition: width 0.3s;
         }
-
-        .nav-links a:hover::after {
+        
+        .nav-link:hover::after {
             width: 100%;
         }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 8rem 5% 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            max-width: 1200px;
-            text-align: center;
-            z-index: 1;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 0.5rem 1.5rem;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 50px;
-            font-size: 0.9rem;
-            color: var(--accent-cyan);
-            margin-bottom: 2rem;
-            backdrop-filter: blur(10px);
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #fff 0%, var(--text-secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 3rem;
-        }
-
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 4rem;
-            margin-top: 4rem;
-            flex-wrap: wrap;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .stat-label {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Sections General */
-        section {
-            padding: 6rem 5%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-tag {
-            color: var(--accent-purple);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(2rem, 4vw, 3rem);
-            margin-bottom: 1rem;
-        }
-
-        .section-desc {
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-            font-size: 1.1rem;
-        }
-
-        /* Service Cards */
-        .service-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .service-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 3rem 2rem;
-            backdrop-filter: blur(20px);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
-            transition: left 0.5s;
-        }
-
-        .service-card:hover::before {
-            left: 100%;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(255,255,255,0.2);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-
-        .service-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        .service-card p {
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
-
-        .feature-list {
-            list-style: none;
-            margin-bottom: 2rem;
-        }
-
-        .feature-list li {
-            padding: 0.5rem 0;
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.95rem;
-        }
-
-        .feature-list li i {
-            color: var(--success);
-            font-size: 0.8rem;
-        }
-
-        /* Pricing Grid */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .pricing-card {
-            background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 2rem;
-            position: relative;
-            transition: all 0.3s;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .pricing-card.featured {
-            border-color: var(--accent-purple);
-            transform: scale(1.05);
-            box-shadow: 0 0 40px rgba(184, 41, 255, 0.2);
-        }
-
-        .popular-badge {
-            position: absolute;
-            top: -12px;
-            right: 20px;
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
-            padding: 0.25rem 1rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .plan-name {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .price {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        .price-period {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            font-family: inherit;
-            font-size: 1rem;
-            margin-top: auto;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-            color: var(--primary-bg);
-            box-shadow: 0 4px 20px rgba(0, 242, 255, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(0, 242, 255, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            border: 1px solid var(--glass-border);
-            color: var(--text-primary);
-        }
-
-        .btn-secondary:hover {
-            background: var(--glass-bg);
-            border-color: var(--accent-cyan);
-        }
-
-        /* Transfer Section */
-        .transfer-section {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 3rem;
-            margin: 4rem 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .transfer-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--success), transparent);
-        }
-
-        .transfer-icon {
-            font-size: 3rem;
-            color: var(--success);
-            margin-bottom: 1rem;
-        }
-
-        .bank-details {
-            display: inline-block;
-            background: rgba(0,0,0,0.3);
-            padding: 2rem;
-            border-radius: 16px;
-            margin-top: 1.5rem;
-            text-align: left;
-            border: 1px solid var(--glass-border);
-            font-family: 'Space Grotesk', monospace;
-        }
-
-        .bank-row {
-            display: flex;
-            justify-content: space-between;
-            gap: 2rem;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--glass-border);
-        }
-
-        .bank-row:last-child {
-            border-bottom: none;
-        }
-
-        .bank-label {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .bank-value {
-            color: var(--text-primary);
-            font-weight: 600;
-            user-select: all;
-            cursor: pointer;
-        }
-
-        .bank-value:hover {
-            color: var(--accent-cyan);
-        }
-
-        /* Testimonials */
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .testimonial-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 2rem;
-            position: relative;
-        }
-
-        .testimonial-card::before {
-            content: '"';
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            font-size: 4rem;
-            color: var(--accent-purple);
-            opacity: 0.3;
-            font-family: serif;
-        }
-
-        .stars {
-            color: var(--warning);
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-        }
-
-        .testimonial-text {
-            color: var(--text-secondary);
-            font-style: italic;
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: white;
-        }
-
-        .author-info h4 {
-            font-size: 1rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .author-info span {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        /* Trust Badges */
-        .trust-badges {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin: 4rem 0;
-            flex-wrap: wrap;
-            opacity: 0.6;
-        }
-
-        .trust-badge {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        /* WhatsApp Float */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: #25d366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.8rem;
+        
+        .whatsapp-btn {
+            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
             box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-            cursor: pointer;
-            transition: all 0.3s;
-            z-index: 999;
-            text-decoration: none;
         }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1) rotate(10deg);
-            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+        
+        .whatsapp-btn:hover {
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+            transform: scale(1.05);
         }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 3rem 5%;
-            border-top: 1px solid var(--glass-border);
-            margin-top: 4rem;
-            color: var(--text-secondary);
-        }
-
-        .footer-logo {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero-stats { gap: 2rem; }
-            .pricing-card.featured { transform: scale(1); }
-            .service-container { grid-template-columns: 1fr; }
-            .bank-row { flex-direction: column; gap: 0.25rem; }
-        }
-
-        /* Loading Animation */
-        .fade-in {
+        
+        .scroll-reveal {
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s ease-out;
         }
-
-        .fade-in.visible {
+        
+        .scroll-reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
+        
+        .grid-pattern {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
     </style>
 </head>
-<body>
+<body class="font-sans antialiased">
 
-    <div class="bg-gradient"></div>
+    <!-- CONFIGURACIÓN DE PRECIOS - MODIFICA AQUÍ -->
+    <script>
+        // ============================================
+        // CONFIGURACIÓN CENTRAL DE PRECIOS
+        // Modifica los valores aquí y se actualizarán automáticamente en toda la página
+        // ============================================
+        const pricingConfig = {
+            // CapCut Pro
+            capcut: {
+                mes1: { normal: 439.00, discount: 241.45 },
+                meses6: { normal: 2639.00, discount: 1448.70 },
+                meses12: { normal: 3399.00, discount: 2005.41 }
+            },
+            // Spotify Individual
+            spotifyIndividual: {
+                mes1: { normal: 139.00, discount: 79.99 },
+                meses3: { normal: 417.00, discount: 239.39 },
+                meses6: { normal: 834.00, discount: 469.29 },
+                meses12: { normal: 1390.00, discount: 779.69 }
+            },
+            // Spotify DUO
+            spotifyDuo: {
+                mes1: { normal: 189.00, discount: 119.89 },
+                meses3: { normal: 567.00, discount: 319.89 },
+                meses6: { normal: 1134.00, discount: 629.19 },
+                meses12: { normal: 2259.00, discount: 1249.99 }
+            },
+            // Bloqueo ADS
+            bloqueoAds: {
+                mes1: { normal: 93.45, discount: 85.04 },
+                meses2: { normal: 186.90, discount: 164.47 },
+                meses3: { normal: 280.35, discount: 235.49 },
+                meses6: { normal: 560.70, discount: 454.17 },
+                meses9: { normal: 841.05, discount: 656.02 },
+                meses12: { normal: 1121.40, discount: 796.19 }
+            }
+        };
 
-    <!-- Navigation -->
-    <nav>
-        <div class="logo">
-            <i class="fas fa-cube"></i>
-            GLOBIX
+        // Datos bancarios
+        const bankInfo = {
+            nombre: "Globix Servicios",
+            clabe: "722969010547819121",
+            banco: "Mercado Pago W",
+            whatsapp: "5218136000518"
+        };
+    </script>
+
+    <!-- Navegación -->
+    <nav class="fixed w-full z-50 glass-strong border-b border-white/10 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-400 to-purple-600 flex items-center justify-center">
+                        <i class="fas fa-cube text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold tracking-tight">
+                        Globix<span class="gradient-text">Tecnología</span>
+                    </span>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#spotify" class="nav-link text-gray-300 hover:text-white transition-colors">Gift Card Spotify</a>
+                    <a href="#capcut" class="nav-link text-gray-300 hover:text-white transition-colors">Gift Card Capcut</a>
+                    <a href="#bloqueo-ads" class="nav-link text-gray-300 hover:text-white transition-colors">Bloqueo ADS</a>
+                    <a href="#pagos" class="nav-link text-gray-300 hover:text-white transition-colors">Pagos</a>
+                    <a href="#opiniones" class="nav-link text-gray-300 hover:text-white transition-colors">Opiniones</a>
+                    <a href="#contacto" class="nav-link text-gray-300 hover:text-white transition-colors">Contacto</a>
+                </div>
+
+                <button onclick="toggleMobileMenu()" class="md:hidden text-white focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
         </div>
-        <ul class="nav-links">
-            <li><a href="#musica">Música Premium</a></li>
-            <li><a href="#seguridad">Bloqueo de Ads</a></li>
-            <li><a href="#testimonios">Opiniones</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-        </ul>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass-strong border-t border-white/10">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#spotify" class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-md">Gift Card Spotify</a>
+                <a href="#capcut" class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-md">Gift Card Capcut</a>
+                <a href="#bloqueo-ads" class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-md">Bloqueo ADS</a>
+                <a href="#pagos" class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-md">Pagos</a>
+                <a href="#opiniones" class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-md">Opiniones</a>
+                <a href="#contacto" class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-md">Contacto</a>
+            </div>
+        </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content fade-in">
-            <div class="badge">
-                <i class="fas fa-bolt"></i> Servicios Digitales Premium en México
+    <section class="relative min-h-screen flex items-center justify-center hero-gradient grid-pattern overflow-hidden pt-20">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-globix-dark"></div>
+        
+        <!-- Animated Background Elements -->
+        <div class="absolute top-20 left-10 w-72 h-72 bg-purple-600/20 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-block mb-6 px-4 py-2 rounded-full glass border border-cyan-500/30 text-cyan-400 text-sm font-medium animate-float">
+                <i class="fas fa-check-circle mr-2"></i>Servicios Digitales Premium
             </div>
-            <h1>Experiencias Digitales Sin Límites</h1>
-            <p class="hero-subtitle">
-                Accede a música premium sin interrupciones y navega por internet libre de publicidad. 
-                Tecnología de punta para usuarios exigentes.
+            
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
+                Experiencias Digitales<br>
+                <span class="gradient-text">Sin Límites</span>
+            </h1>
+            
+            <p class="text-xl md:text-2xl text-gray-400 mb-10 max-w-3xl mx-auto font-light">
+                Sólo disfruta, nosotros nos encargamos del lado complejo. 
+                Soluciones tecnológicas confiables, seguras y al mejor precio.
             </p>
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <a href="#musica" class="btn btn-primary">
-                    <i class="fas fa-music"></i> Ver Planes de Música
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#servicios" class="px-8 py-4 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-lg hover:shadow-2xl hover:shadow-cyan-500/50 transition-all transform hover:-translate-y-1">
+                    Explorar Servicios
                 </a>
-                <a href="#seguridad" class="btn btn-secondary">
-                    <i class="fas fa-shield-alt"></i> Proteger mis Dispositivos
+                <a href="https://wa.me/5218136000518" target="_blank" class="px-8 py-4 rounded-full glass border border-white/20 text-white font-semibold text-lg hover:bg-white/10 transition-all flex items-center gap-2">
+                    <i class="fab fa-whatsapp text-green-400"></i>
+                    Contactar por WhatsApp
                 </a>
             </div>
 
-            <div class="hero-stats">
-                <div class="stat">
-                    <div class="stat-number">500+</div>
-                    <div class="stat-label">Clientes Activos</div>
+            <!-- Stats -->
+            <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+                <div class="glass rounded-2xl p-6">
+                    <div class="text-3xl font-bold text-cyan-400">+5000</div>
+                    <div class="text-sm text-gray-400 mt-1">Clientes Satisfechos</div>
                 </div>
-                <div class="stat">
-                    <div class="stat-number">99.9%</div>
-                    <div class="stat-label">Uptime</div>
+                <div class="glass rounded-2xl p-6">
+                    <div class="text-3xl font-bold text-purple-400">99%</div>
+                    <div class="text-sm text-gray-400 mt-1">Entregas Exitosas</div>
                 </div>
-                <div class="stat">
-                    <div class="stat-number">24/7</div>
-                    <div class="stat-label">Soporte Técnico</div>
+                <div class="glass rounded-2xl p-6">
+                    <div class="text-3xl font-bold text-pink-400">24/7</div>
+                    <div class="text-sm text-gray-400 mt-1">Soporte Técnico</div>
+                </div>
+                <div class="glass rounded-2xl p-6">
+                    <div class="text-3xl font-bold text-green-400">4.9</div>
+                    <div class="text-sm text-gray-400 mt-1">Calificación Promedio</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Servicios Overview -->
-    <section id="servicios">
-        <div class="section-header fade-in">
-            <span class="section-tag">Nuestros Servicios</span>
-            <h2>Soluciones Digitales Integrales</h2>
-            <p class="section-desc">Dos pilares fundamentales para tu vida digital: entretenimiento sin límites y privacidad garantizada.</p>
-        </div>
-
-        <div class="service-container">
-            <div class="service-card fade-in" id="musica">
-                <div class="service-icon">
-                    <i class="fas fa-music"></i>
-                </div>
-                <h3>Música Premium</h3>
-                <p>Acceso completo a bibliotecas musicales ilimitadas. Sin anuncios, sin interrupciones, máxima calidad de audio.</p>
-                <ul class="feature-list">
-                    <li><i class="fas fa-check"></i> Calidad HD y Ultra HD</li>
-                    <li><i class="fas fa-check"></i> Modo offline incluido</li>
-                    <li><i class="fas fa-check"></i> Compatible con todos tus dispositivos</li>
-                    <li><i class="fas fa-check"></i> Planes Individual y Duo</li>
-                </ul>
-                <a href="#planes-musica" class="btn btn-primary" style="width: 100%;">
-                    Ver Planes y Precios
-                </a>
+    <section id="servicios" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Nuestros <span class="gradient-text">Servicios</span></h2>
+                <p class="text-gray-400 text-lg max-w-2xl mx-auto">Soluciones digitales diseñadas para mejorar tu experiencia online sin complicaciones.</p>
             </div>
 
-            <div class="service-card fade-in" id="seguridad">
-                <div class="service-icon" style="background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h3>Bloqueo de Publicidad</h3>
-                <p>Elimina publicidad invasiva en todos tus dispositivos. Navegación rápida, segura y sin distracciones.</p>
-                <ul class="feature-list">
-                    <li><i class="fas fa-check"></i> Bloqueo sistema-wide (PC y Móvil)</li>
-                    <li><i class="fas fa-check"></i> DNS privados adaptados</li>
-                    <li><i class="fas fa-check"></i> Reducción de malware</li>
-                    <li><i class="fas fa-check"></i> Mejor velocidad de carga</li>
-                </ul>
-                <a href="#planes-seguridad" class="btn btn-primary" style="width: 100%;">
-                    Proteger mis Dispositivos
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Música Pricing -->
-    <section id="planes-musica" style="background: var(--glass-bg); border-radius: 40px; margin: 2rem auto;">
-        <div class="section-header fade-in">
-            <span class="section-tag">Planes de Música</span>
-            <h2>Elige tu Experiencia Sonora</h2>
-            <p class="section-desc">Suscripciones flexibles que se adaptan a tus necesidades. Cancela cuando quieras.</p>
-        </div>
-
-        <div style="margin-bottom: 3rem;">
-            <h3 style="text-align: center; margin-bottom: 2rem; color: var(--accent-cyan);">
-                <i class="fas fa-user"></i> Plan Individual
-            </h3>
-            <div class="pricing-grid" id="music-individual-container">
-                <!-- Injected via JavaScript -->
-            </div>
-        </div>
-
-        <div>
-            <h3 style="text-align: center; margin-bottom: 2rem; color: var(--accent-pink);">
-                <i class="fas fa-users"></i> Plan Duo (2 personas)
-            </h3>
-            <div class="pricing-grid" id="music-duo-container">
-                <!-- Injected via JavaScript -->
-            </div>
-        </div>
-
-        <!-- Transferencia Música -->
-        <div class="transfer-section fade-in">
-            <i class="fas fa-university transfer-icon"></i>
-            <h3>Pago por Transferencia Bancaria</h3>
-            <p style="color: var(--text-secondary); margin-bottom: 1rem;">
-                Prefieres pagar directo? Realiza tu transferencia y envíanos el comprobante por WhatsApp
-            </p>
-            <div class="bank-details">
-                <div class="bank-row">
-                    <span class="bank-label">Beneficiario:</span>
-                    <span class="bank-value" onclick="copyToClipboard(this)">Globbix Servicios</span>
-                </div>
-                <div class="bank-row">
-                    <span class="bank-label">CLABE:</span>
-                    <span class="bank-value" onclick="copyToClipboard(this)">721180100038243255</span>
-                </div>
-                <div class="bank-row">
-                    <span class="bank-label">Banco:</span>
-                    <span class="bank-value">Albo</span>
-                </div>
-            </div>
-            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--accent-cyan);">
-                <i class="fas fa-info-circle"></i> Haz clic en los datos para copiarlos automáticamente
-            </p>
-        </div>
-    </section>
-
-    <!-- Seguridad Pricing -->
-    <section id="planes-seguridad">
-        <div class="section-header fade-in">
-            <span class="section-tag">Seguridad Digital</span>
-            <h2>Navegación Limpia y Segura</h2>
-            <p class="section-desc">Utilizamos aplicaciones especializadas y DNS privados adaptados según tus necesidades específicas.</p>
-        </div>
-
-        <div class="pricing-grid" id="security-container">
-            <!-- Injected via JavaScript -->
-        </div>
-
-        <!-- Transferencia Seguridad -->
-        <div class="transfer-section fade-in" style="margin-top: 3rem;">
-            <i class="fas fa-university transfer-icon"></i>
-            <h3>Pago por Transferencia para Servicio de Bloqueo</h3>
-            <div class="bank-details">
-                <div class="bank-row">
-                    <span class="bank-label">Beneficiario:</span>
-                    <span class="bank-value" onclick="copyToClipboard(this)">Globbix Servicios</span>
-                </div>
-                <div class="bank-row">
-                    <span class="bank-label">CLABE:</span>
-                    <span class="bank-value" onclick="copyToClipboard(this)">721180100038243255</span>
-                </div>
-                <div class="bank-row">
-                    <span class="bank-label">Banco:</span>
-                    <span class="bank-value">Albo</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonios -->
-    <section id="testimonios">
-        <div class="section-header fade-in">
-            <span class="section-tag">Testimonios</span>
-            <h2>Lo que dicen nuestros clientes</h2>
-            <p class="section-desc">Experiencias reales de usuarios que ya disfrutan de nuestros servicios premium.</p>
-        </div>
-
-        <div class="testimonials-grid">
-            <div class="testimonial-card fade-in">
-                <div class="stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                </div>
-                <p class="testimonial-text">
-                    "Increíble el cambio en mi experiencia de navegación. Cero anuncios en el celular y la laptop. 
-                    Además el servicio de música funciona perfecto en mi auto y en casa."
-                </p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">MR</div>
-                    <div class="author-info">
-                        <h4>Miguel R.</h4>
-                        <span>Cliente desde 2023</span>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Spotify Card -->
+                <div class="glass rounded-3xl p-8 card-hover scroll-reveal group cursor-pointer" onclick="document.getElementById('spotify').scrollIntoView({behavior: 'smooth'})">
+                    <div class="w-16 h-16 rounded-2xl bg-green-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fab fa-spotify text-3xl text-green-500"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Spotify Premium</h3>
+                    <p class="text-gray-400 mb-6">Gift cards individuales y duo. Música sin límites, sin anuncios y con calidad HD.</p>
+                    <div class="flex items-center text-green-400 font-semibold">
+                        Ver planes <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
                     </div>
                 </div>
-            </div>
 
-            <div class="testimonial-card fade-in">
-                <div class="stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                </div>
-                <p class="testimonial-text">
-                    "El plan Duo me sale más barato que pagar individual y comparto con mi hermana. 
-                    La atención por WhatsApp es inmediata, resolvieron mi duda en 5 minutos."
-                </p>
-                <div class="testimonial-author">
-                    <div class="author-avatar" style="background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));">AL</div>
-                    <div class="author-info">
-                        <h4>Ana Lucía G.</h4>
-                        <span>Plan Duo Activo</span>
+                <!-- CapCut Card -->
+                <div class="glass rounded-3xl p-8 card-hover scroll-reveal group cursor-pointer" onclick="document.getElementById('capcut').scrollIntoView({behavior: 'smooth'})">
+                    <div class="w-16 h-16 rounded-2xl bg-purple-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-video text-3xl text-purple-500"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">CapCut Pro</h3>
+                    <p class="text-gray-400 mb-6">Edición profesional con IA, 1TB de almacenamiento y créditos mensuales incluidos.</p>
+                    <div class="flex items-center text-purple-400 font-semibold">
+                        Ver planes <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
                     </div>
                 </div>
-            </div>
 
-            <div class="testimonial-card fade-in">
-                <div class="stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                </div>
-                <p class="testimonial-text">
-                    "Trabajo en diseño y necesito concentración. El bloqueo de publicidad no solo quitó los anuncios, 
-                    sino que mi internet va más rápido al no cargar tanta basura. 100% recomendado."
-                </p>
-                <div class="testimonial-author">
-                    <div class="author-avatar" style="background: linear-gradient(135deg, var(--accent-cyan), var(--success));">JC</div>
-                    <div class="author-info">
-                        <h4>Javier C.</h4>
-                        <span>Diseñador Freelance</span>
+                <!-- Bloqueo ADS Card -->
+                <div class="glass rounded-3xl p-8 card-hover scroll-reveal group cursor-pointer" onclick="document.getElementById('bloqueo-ads').scrollIntoView({behavior: 'smooth'})">
+                    <div class="w-16 h-16 rounded-2xl bg-cyan-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-shield-alt text-3xl text-cyan-500"></i>
                     </div>
-                </div>
-            </div>
-
-            <div class="testimonial-card fade-in">
-                <div class="stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                </div>
-                <p class="testimonial-text">
-                    "Pagué por transferencia y en menos de 30 minutos ya tenía acceso. 
-                    La configuración del DNS fue súper sencilla, me guiaron paso a paso."
-                </p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">DP</div>
-                    <div class="author-info">
-                        <h4>Diana P.</h4>
-                        <span>Usuario Transferencia</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonial-card fade-in">
-                <div class="stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                </div>
-                <p class="testimonial-text">
-                    "Llevaba años buscando una solución para bloquear anuncios en iPhone sin jailbreak. 
-                    Globix lo hizo posible. Ya no tengo publicidad en ninguna app."
-                </p>
-                <div class="testimonial-author">
-                    <div class="author-avatar" style="background: linear-gradient(135deg, #ff2975, #ffb800);">RS</div>
-                    <div class="author-info">
-                        <h4>Roberto S.</h4>
-                        <span>Usuario iOS</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonial-card fade-in">
-                <div class="stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                </div>
-                <p class="testimonial-text">
-                    "Calidad de audio excelente, puedo descargar mis playlists para el gym. 
-                    El precio del plan anual sale casi al 50% de lo que cobran oficialmente. Gran ahorro."
-                </p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">KF</div>
-                    <div class="author-info">
-                        <h4>Karla F.</h4>
-                        <span>Plan Individual 12 meses</span>
+                    <h3 class="text-2xl font-bold mb-3">Bloqueo de ADS</h3>
+                    <p class="text-gray-400 mb-6">Navegación limpia, privacidad total y ahorro de datos. Compatible con todos los dispositivos.</p>
+                    <div class="flex items-center text-cyan-400 font-semibold">
+                        Ver planes <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Trust Badges -->
-    <section>
-        <div class="trust-badges fade-in">
-            <div class="trust-badge">
-                <i class="fas fa-lock"></i> Pagos Seguros con MercadoPago
-            </div>
-            <div class="trust-badge">
-                <i class="fas fa-check-circle"></i> Activación Inmediata
-            </div>
-            <div class="trust-badge">
-                <i class="fas fa-headset"></i> Soporte Personalizado
-            </div>
-            <div class="trust-badge">
-                <i class="fas fa-sync"></i> Renovación Automática Opcional
+    <!-- Gift Card Capcut -->
+    <section id="capcut" class="py-24 bg-gradient-to-b from-transparent to-black/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass rounded-3xl p-8 md:p-12 border border-purple-500/20">
+                <div class="flex flex-col md:flex-row items-center gap-12 mb-12">
+                    <div class="flex-1 scroll-reveal">
+                        <div class="inline-block px-4 py-1 rounded-full bg-purple-500/20 text-purple-400 text-sm font-semibold mb-4">Edición Profesional</div>
+                        <h2 class="text-4xl md:text-5xl font-bold mb-6">Gift Card <span class="text-purple-400">Capcut Pro</span></h2>
+                        <p class="text-gray-300 text-lg mb-6 leading-relaxed">
+                            ¿Tienes una idea? Conviértela en un video viral en segundos. CapCut no es solo un editor; 
+                            es la herramienta definitiva que rompe las barreras entre un aficionado y un creador de contenido profesional.
+                        </p>
+                        <ul class="space-y-3 text-gray-400">
+                            <li class="flex items-center"><i class="fas fa-check text-purple-500 mr-3"></i> Funciones avanzadas de IA</li>
+                            <li class="flex items-center"><i class="fas fa-check text-purple-500 mr-3"></i> Compatible con Móvil, PC, Mac y Web</li>
+                            <li class="flex items-center"><i class="fas fa-check text-purple-500 mr-3"></i> 1 TB de almacenamiento en la nube</li>
+                            <li class="flex items-center"><i class="fas fa-check text-purple-500 mr-3"></i> KIT de marca para compartir diseños</li>
+                        </ul>
+                    </div>
+                    <div class="flex-1 scroll-reveal">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-purple-600/30 rounded-full blur-3xl"></div>
+                            <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&h=400&fit=crop" alt="CapCut Pro" class="relative rounded-2xl shadow-2xl border border-purple-500/30 w-full">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6" id="capcut-plans">
+                    <!-- Los planes se generan dinámicamente con JavaScript -->
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="contacto">
-        <div class="footer-logo">GLOBIX TECNOLOGÍA</div>
-        <p style="margin-bottom: 1rem;">Transformando tu experiencia digital</p>
-        <p style="font-size: 0.9rem; opacity: 0.6;">
-            &copy; 2024 Globix Tecnología. Todos los derechos reservados.<br>
-            Monterrey, Nuevo León, México
-        </p>
-    </footer>
+    <!-- Gift Card Spotify -->
+    <section id="spotify" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Gift Card <span class="text-green-500">Spotify</span></h2>
+                <p class="text-gray-400 text-lg">Música sin límites para ti o para compartir</p>
+            </div>
 
-    <!-- WhatsApp Float -->
-    <a href="https://wa.me/5218136000518" class="whatsapp-float" target="_blank" title="Contactar por WhatsApp">
+            <!-- Tabs -->
+            <div class="flex justify-center mb-12 scroll-reveal">
+                <div class="glass rounded-full p-1 flex">
+                    <button onclick="switchSpotifyTab('individual')" id="tab-individual" class="px-8 py-3 rounded-full bg-green-500 text-white font-semibold transition-all">
+                        Individual
+                    </button>
+                    <button onclick="switchSpotifyTab('duo')" id="tab-duo" class="px-8 py-3 rounded-full text-gray-400 hover:text-white font-semibold transition-all">
+                        Plan DUO
+                    </button>
+                </div>
+            </div>
+
+            <!-- Spotify Individual -->
+            <div id="spotify-individual" class="scroll-reveal">
+                <div class="glass rounded-3xl p-8 mb-8 border border-green-500/20">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center">
+                            <i class="fas fa-user text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold">Premium Individual</h3>
+                            <p class="text-gray-400">Suscripción prepagada sin cobros automáticos</p>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6" id="spotify-individual-plans">
+                        <!-- Generado dinámicamente -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Spotify DUO -->
+            <div id="spotify-duo" class="hidden scroll-reveal">
+                <div class="glass rounded-3xl p-8 mb-8 border border-blue-500/20">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center">
+                            <i class="fas fa-user-friends text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold">Premium DUO</h3>
+                            <p class="text-gray-400">Dos cuentas independientes, un solo pago. Ideal para parejas o amigos.</p>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6" id="spotify-duo-plans">
+                        <!-- Generado dinámicamente -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bloqueo ADS -->
+    <section id="bloqueo-ads" class="py-24 bg-gradient-to-b from-black/30 to-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass rounded-3xl p-8 md:p-12 border border-cyan-500/20">
+                <div class="grid md:grid-cols-2 gap-12 items-center mb-12">
+                    <div class="scroll-reveal">
+                        <div class="inline-block px-4 py-1 rounded-full bg-cyan-500/20 text-cyan-400 text-sm font-semibold mb-4">Seguridad Digital</div>
+                        <h2 class="text-4xl md:text-5xl font-bold mb-6">Bloqueo de <span class="text-cyan-400">Publicidad</span></h2>
+                        <p class="text-gray-300 text-lg mb-6">
+                            ¿Cansado de que los anuncios interrumpan tus videos o llenen de basura tus sitios web favoritos? 
+                            Ofrecemos una solución definitiva para limpiar tu experiencia digital.
+                        </p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-cyan-500/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fas fa-bolt text-cyan-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">Navegación más rápida</h4>
+                                    <p class="text-gray-400 text-sm">Al no cargar anuncios pesados, las páginas web abren en tiempo récord.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-cyan-500/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fas fa-database text-cyan-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">Ahorro de Datos</h4>
+                                    <p class="text-gray-400 text-sm">Deja de gastar tus megas en publicidad que no pediste.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-cyan-500/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fas fa-user-shield text-cyan-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">Mayor Privacidad</h4>
+                                    <p class="text-gray-400 text-sm">Bloqueamos los rastreadores que intentan espiar tu actividad.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scroll-reveal">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-cyan-600/20 rounded-full blur-3xl"></div>
+                            <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&fit=crop" alt="Security" class="relative rounded-2xl shadow-2xl border border-cyan-500/30 w-full">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="ads-plans">
+                    <!-- Generado dinámicamente -->
+                </div>
+                
+                <div class="mt-8 p-4 rounded-xl bg-yellow-500/10 border border-yellow-500/30 text-center">
+                    <p class="text-yellow-400 text-sm">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        Precios mostrados son por 1 dispositivo. ¿Necesitas más dispositivos? 
+                        <a href="https://wa.me/5218136000518" target="_blank" class="underline hover:text-yellow-300">Contáctanos por WhatsApp</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Pagos/Transferencias -->
+    <section id="pagos" class="py-24">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 scroll-reveal">
+                <h2 class="text-4xl font-bold mb-4">Métodos de <span class="gradient-text">Pago</span></h2>
+                <p class="text-gray-400">Opciones seguras para tu comodidad</p>
+            </div>
+
+            <div class="glass rounded-3xl p-8 border border-white/10 scroll-reveal">
+                <div class="flex items-center justify-center mb-8">
+                    <div class="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center">
+                        <i class="fas fa-university text-3xl text-blue-400"></i>
+                    </div>
+                </div>
+                
+                <h3 class="text-2xl font-bold text-center mb-8">Transferencia Bancaria</h3>
+                
+                <div class="space-y-6 max-w-lg mx-auto">
+                    <div class="glass rounded-xl p-6 border border-white/5">
+                        <div class="text-sm text-gray-400 mb-1">Nombre</div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-semibold" id="bank-name"></span>
+                            <button onclick="copyToClipboard('bank-name')" class="text-cyan-400 hover:text-cyan-300">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="glass rounded-xl p-6 border border-white/5 bg-blue-500/5">
+                        <div class="text-sm text-gray-400 mb-1">CLABE Interbancaria</div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-mono font-bold text-blue-400 tracking-wider" id="bank-clabe"></span>
+                            <button onclick="copyToClipboard('bank-clabe')" class="text-cyan-400 hover:text-cyan-300 text-xl">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="glass rounded-xl p-6 border border-white/5">
+                        <div class="text-sm text-gray-400 mb-1">Banco</div>
+                        <div class="text-xl font-semibold" id="bank-institution"></div>
+                    </div>
+                </div>
+
+                <div class="mt-8 text-center">
+                    <p class="text-gray-400 mb-4">Una vez realizado el pago, envía tu comprobante:</p>
+                    <a href="https://wa.me/5218136000518?text=Hola%20Globix%20Tecnología,%20acabo%20de%20realizar%20una%20transferencia%20y%20adjunto%20mi%20comprobante." 
+                       target="_blank"
+                       class="inline-flex items-center gap-2 px-8 py-4 rounded-full whatsapp-btn text-white font-bold text-lg transition-all hover:scale-105">
+                        <i class="fab fa-whatsapp text-2xl"></i>
+                        Enviar Comprobante por WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Opiniones -->
+    <section id="opiniones" class="py-24 bg-gradient-to-b from-transparent to-black/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Lo que dicen <span class="gradient-text">nuestros clientes</span></h2>
+                <p class="text-gray-400 text-lg">Experiencias reales de usuarios satisfechos</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="testimonials-container">
+                <!-- Testimonios generados dinámicamente -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto/Footer -->
+    <section id="contacto" class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-t from-cyan-900/20 to-transparent"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">¿Listo para empezar?</h2>
+            <p class="text-xl text-gray-400 mb-8">Estamos aquí para ayudarte. Contáctanos por WhatsApp para una atención personalizada inmediata.</p>
+            
+            <a href="https://wa.me/5218136000518" target="_blank" 
+               class="inline-flex items-center gap-3 px-10 py-5 rounded-full whatsapp-btn text-white font-bold text-xl transition-all hover:scale-105 mb-12">
+                <i class="fab fa-whatsapp text-3xl"></i>
+                Contactar por WhatsApp
+            </a>
+
+            <div class="glass rounded-2xl p-8 mt-12">
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <i class="fas fa-cube text-cyan-400 text-2xl"></i>
+                    <span class="text-2xl font-bold">Globix Tecnología</span>
+                </div>
+                <p class="text-gray-500 text-sm">© 2026 Globix Tecnología. Todos los derechos reservados.</p>
+                <div class="flex justify-center gap-6 mt-4 text-gray-400">
+                    <a href="#" class="hover:text-cyan-400 transition-colors"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="hover:text-cyan-400 transition-colors"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-cyan-400 transition-colors"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Botón WhatsApp Flotante -->
+    <a href="https://wa.me/5218136000518" target="_blank" 
+       class="fixed bottom-8 right-8 z-50 w-16 h-16 rounded-full whatsapp-btn flex items-center justify-center text-white text-3xl animate-bounce hover:animate-none transition-all shadow-2xl">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- JavaScript Configuration & Rendering -->
+    <!-- JavaScript -->
     <script>
-        // ==========================================
-        // CONFIGURACIÓN DE PRECIOS - EDITA AQUÍ
-        // Modifica los precios y los enlaces de pago en esta sección
-        // Los cambios se reflejarán automáticamente en toda la página
-        // ==========================================
-        
-        const pricingConfig = {
-            music: {
-                individual: [
-                    {
-                        name: "Mensual",
-                        price: 57.39,
-                        period: "mes",
-                        type: "subscription",
-                        url: "https://www.mercadopago.com.mx/subscriptions/checkout?preapproval_plan_id=747bb9307a004b4991a47d4e754e7810",
-                        featured: false
-                    },
-                    {
-                        name: "1 Mes",
-                        price: 61.49,
-                        period: "pago único",
-                        type: "unique",
-                        url: "https://www.mercadopago.com.mx/subscriptions/checkout?preapproval_plan_id=2d3563dd7b4442b59fda26292b6b5716",
-                        featured: false
-                    },
-                    {
-                        name: "3 Meses",
-                        price: 172.19,
-                        period: "pago único",
-                        type: "unique",
-                        url: "https://www.mercadopago.com.mx/subscriptions/checkout?preapproval_plan_id=9fbae780505c40cab107b97f8233867a",
-                        featured: false
-                    },
-                    {
-                        name: "6 Meses",
-                        price: 336.19,
-                        period: "pago único",
-                        type: "unique",
-                        url: "https://www.mercadopago.com.mx/subscriptions/checkout?preapproval_plan_id=2b5ab95027da4b0db1150156911cd907",
-                        featured: true
-                    },
-                    {
-                        name: "12 Meses",
-                        price: 573.99,
-                        period: "pago único",
-                        type: "unique",
-                        url: "https://www.mercadopago.com.mx/subscriptions/checkout?preapproval_plan_id=9d9bd8f394444e6b8d88c3d2e16b0cef",
-                        featured: false,
-                        discount: "17% OFF"
-                    }
-                ],
-                duo: [
-                    {
-                        name: "Mensual",
-                        price: 73.99,
-                        period: "mes",
-                        type: "subscription",
-                        url: "https://www.mercadopago.com.mx/subscriptions/checkout?preapproval_plan_id=ff41761c604249649240d7fab9f47023",
-                        featured: false
-                    },
-                    {
-                        name: "1 Mes",
-                        price: 81.99,
-                        period: "pago único",
-                        type: "unique",
-                        url: "https://www.mercadopago.com.mx/subscriptions/checkout?preapproval_plan_id=8a080b16b7e74df4b058eb14ff167ca6",
-                        featured: false
-                    },
-                    {
-                        name: "3 Meses",
-                        price: 221.39,
-                        period: "pago único",
-                        type: "unique",
-                        url: "https://www.mercadopago.com.mx/subscriptions/checkout?preapproval_plan_id=c4c6ea0a03764ba6a4d3fe6a61c27d17",
-                        featured: false
-                    },
-                    {
-                        name: "6 Meses",
-                        price: 434.59,
-                        period: "pago único",
-                        type: "unique",
-                        url: "https://www.mercadopago.com.mx/subscriptions/checkout?preapproval_plan_id=c82058e163d64e59b6c53527e1270a71",
-                        featured: true
-                    },
-                    {
-                        name: "12 Meses",
-                        price: 860.99,
-                        period: "pago único",
-                        type: "unique",
-                        url: "https://www.mercadopago.com.mx/subscriptions/checkout?preapproval_plan_id=6fae0e4bfc4747c184f2d5acbea66ebd",
-                        featured: false,
-                        discount: "Mejor valor"
-                    }
-                ]
-            },
-            security: [
-                {
-                    name: "Mensual",
-                    price: 71.69,
-                    period: "mes",
-                    description: "Suscripción mensual flexible",
-                    url: "https://www.mercadopago.com.mx/subscriptions/checkout?preapproval_plan_id=f0f8f988b21d43cdbdde9ceeac6acecf",
-                    featured: false
-                },
-                {
-                    name: "3 Meses",
-                    price: 208.69,
-                    period: "trimestre",
-                    description: "Ahorro vs mensual",
-                    url: "https://www.mercadopago.com.mx/subscriptions/checkout?preapproval_plan_id=644a8bac5f2e45acb42b9f8d6fd51ae6",
-                    featured: false
-                },
-                {
-                    name: "6 Meses",
-                    price: 405.59,
-                    period: "semestre",
-                    description: "Configuración prioritaria",
-                    url: "https://www.mercadopago.com.mx/subscriptions/checkout?preapproval_plan_id=fe71186a9d3f46f7bad08e8941460fe6",
-                    featured: true
-                },
-                {
-                    name: "12 Meses",
-                    price: 767.69,
-                    period: "año",
-                    description: "Máximo ahorro + soporte VIP",
-                    url: "https://www.mercadopago.com.mx/subscriptions/checkout?preapproval_plan_id=b681b57da7564c7b84dac3f145ac9d9e",
-                    featured: false,
-                    discount: "35% OFF"
-                }
-            ]
-        };
-
-        // Función para generar tarjetas de precio
-        function createPricingCard(plan, type = 'music') {
-            const featuredClass = plan.featured ? 'featured' : '';
-            const badge = plan.featured ? '<div class="popular-badge">Recomendado</div>' : '';
-            const discountBadge = plan.discount ? `<div style="color: var(--success); font-size: 0.85rem; margin-bottom: 0.5rem;"><i class="fas fa-tag"></i> ${plan.discount}</div>` : '';
-            
-            let icon = 'fa-music';
-            let colorStyle = '';
-            
-            if (type === 'security') {
-                icon = 'fa-shield-alt';
-                colorStyle = 'border-top: 3px solid var(--accent-cyan);';
-            }
-
-            return `
-                <div class="pricing-card ${featuredClass}" style="${colorStyle}">
-                    ${badge}
-                    <div class="plan-name">
-                        <i class="fas ${icon}"></i> ${plan.name}
-                    </div>
-                    <div class="price">$${plan.price.toFixed(2)}</div>
-                    <div class="price-period">MXN / ${plan.period}</div>
-                    ${discountBadge}
-                    ${plan.description ? `<p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">${plan.description}</p>` : ''}
-                    <a href="${plan.url}" target="_blank" class="btn btn-primary" style="width: 100%; margin-top: ${plan.description ? '0.5rem' : '1.5rem'};">
-                        <i class="fas fa-credit-card"></i> Pagar Ahora
-                    </a>
-                </div>
-            `;
-        }
-
-        // Renderizar planes
-        function renderPlans() {
-            // Música Individual
-            const individualContainer = document.getElementById('music-individual-container');
-            individualContainer.innerHTML = pricingConfig.music.individual.map(plan => createPricingCard(plan, 'music')).join('');
-
-            // Música Duo
-            const duoContainer = document.getElementById('music-duo-container');
-            duoContainer.innerHTML = pricingConfig.music.duo.map(plan => createPricingCard(plan, 'music')).join('');
-
-            // Seguridad
-            const securityContainer = document.getElementById('security-container');
-            securityContainer.innerHTML = pricingConfig.security.map(plan => createPricingCard(plan, 'security')).join('');
+        // Toggle Mobile Menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
         }
 
         // Copiar al portapapeles
-        function copyToClipboard(element) {
+        function copyToClipboard(elementId) {
+            const element = document.getElementById(elementId);
             const text = element.innerText;
             navigator.clipboard.writeText(text).then(() => {
-                const original = element.innerText;
-                element.innerText = '¡Copiado!';
-                element.style.color = 'var(--success)';
+                // Mostrar toast o alerta visual
+                const original = element.innerHTML;
+                element.innerHTML = '<span class="text-green-400"><i class="fas fa-check mr-2"></i>Copiado</span>';
                 setTimeout(() => {
-                    element.innerText = original;
-                    element.style.color = '';
+                    element.innerHTML = original;
                 }, 2000);
             });
         }
 
-        // Animación de entrada al scroll
-        function handleIntersection() {
+        // Cambiar tabs de Spotify
+        function switchSpotifyTab(tab) {
+            const individual = document.getElementById('spotify-individual');
+            const duo = document.getElementById('spotify-duo');
+            const tabInd = document.getElementById('tab-individual');
+            const tabDuo = document.getElementById('tab-duo');
+
+            if (tab === 'individual') {
+                individual.classList.remove('hidden');
+                duo.classList.add('hidden');
+                tabInd.classList.add('bg-green-500', 'text-white');
+                tabInd.classList.remove('text-gray-400');
+                tabDuo.classList.remove('bg-blue-500', 'text-white');
+                tabDuo.classList.add('text-gray-400');
+            } else {
+                individual.classList.add('hidden');
+                duo.classList.remove('hidden');
+                tabDuo.classList.add('bg-blue-500', 'text-white');
+                tabDuo.classList.remove('text-gray-400');
+                tabInd.classList.remove('bg-green-500', 'text-white');
+                tabInd.classList.add('text-gray-400');
+            }
+        }
+
+        // Renderizar precios CapCut
+        function renderCapCutPlans() {
+            const container = document.getElementById('capcut-plans');
+            const plans = [
+                { 
+                    id: 'capcut-mes1',
+                    title: 'Capcut Pro Team 1TB + 1200 Créditos', 
+                    duration: '34 Días',
+                    priceKey: 'mes1',
+                    link: 'https://www.mercadopago.com.mx/subscriptions/checkout?preapproval_plan_id=cba9183d1629438b9fce937fc6a3bfe6',
+                    popular: false
+                },
+                { 
+                    id: 'capcut-mes6',
+                    title: 'Capcut Pro 1TB + 1250 Créditos/Mes', 
+                    duration: '6 Meses',
+                    priceKey: 'meses6',
+                    link: 'https://www.mercadopago.com.mx/subscriptions/checkout?preapproval_plan_id=2eae63afa44e49e3a86ec43bd5fa8fdb',
+                    popular: true
+                },
+                { 
+                    id: 'capcut-mes12',
+                    title: 'Capcut Pro 1TB + 1250 Créditos/Mes', 
+                    duration: '12 Meses',
+                    priceKey: 'meses12',
+                    link: 'https://www.mercadopago.com.mx/subscriptions/checkout?preapproval_plan_id=0f452e5b3fc14c84972eb0bd3a38a57f',
+                    popular: false
+                }
+            ];
+
+            container.innerHTML = plans.map(plan => `
+                <div class="glass rounded-2xl p-6 border ${plan.popular ? 'border-purple-500 ring-2 ring-purple-500/20' : 'border-white/10'} card-hover relative">
+                    ${plan.popular ? '<div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-purple-500 text-white text-xs font-bold px-4 py-1 rounded-full">MÁS POPULAR</div>' : ''}
+                    <h4 class="text-xl font-bold mb-2">${plan.title}</h4>
+                    <p class="text-gray-400 text-sm mb-4">${plan.duration} • Pago Único</p>
+                    
+                    <div class="mb-6">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="price-strike">$${pricingConfig.capcut[plan.priceKey].normal.toFixed(2)}</span>
+                        </div>
+                        <div class="discount-price">$${pricingConfig.capcut[plan.priceKey].discount.toFixed(2)} <span class="text-sm text-gray-400 font-normal">MXN</span></div>
+                    </div>
+                    
+                    <ul class="text-sm text-gray-400 space-y-2 mb-6">
+                        <li><i class="fas fa-check text-purple-400 mr-2"></i>Funciones avanzadas</li>
+                        <li><i class="fas fa-check text-purple-400 mr-2"></i>Móvil, PC, Mac y Web</li>
+                        <li><i class="fas fa-check text-purple-400 mr-2"></i>1TB Almacenamiento</li>
+                        <li><i class="fas fa-check text-purple-400 mr-2"></i>IA Potente</li>
+                    </ul>
+                    
+                    <a href="${plan.link}" target="_blank" 
+                       class="block w-full py-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-center hover:shadow-lg hover:shadow-purple-500/30 transition-all">
+                        Comprar Ahora
+                    </a>
+                </div>
+            `).join('');
+        }
+
+        // Renderizar Spotify Individual
+        function renderSpotifyIndividual() {
+            const container = document.getElementById('spotify-individual-plans');
+            const plans = [
+                { duration: '1 Mes', priceKey: 'mes1', link: 'https://www.mercadopago.com.mx/subscriptions/checkout?preapproval_plan_id=2d3563dd7b4442b59fda26292b6b5716' },
+                { duration: '3 Meses', priceKey: 'meses3', link: 'https://www.mercadopago.com.mx/subscriptions/checkout?preapproval_plan_id=9fbae780505c40cab107b97f8233867a' },
+                { duration: '6 Meses', priceKey: 'meses6', link: 'https://www.mercadopago.com.mx/subscriptions/checkout?preapproval_plan_id=2b5ab95027da4b0db1150156911cd907' },
+                { duration: '12 Meses', priceKey: 'meses12', link: 'https://www.mercadopago.com.mx/subscriptions/checkout?preapproval_plan_id=9d9bd8f394444e6b8d88c3d2e16b0cef' }
+            ];
+
+            container.innerHTML = plans.map((plan, idx) => `
+                <div class="glass rounded-2xl p-6 border border-green-500/20 card-hover ${idx === 3 ? 'md:col-span-2 lg:col-span-1' : ''}">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-lg font-bold">${plan.duration}</span>
+                        <i class="fas fa-music text-green-500"></i>
+                    </div>
+                    <div class="mb-4">
+                        <span class="price-strike">$${pricingConfig.spotifyIndividual[plan.priceKey].normal.toFixed(2)}</span>
+                        <div class="discount-price">$${pricingConfig.spotifyIndividual[plan.priceKey].discount.toFixed(2)}</div>
+                    </div>
+                    <a href="${plan.link}" target="_blank" 
+                       class="block w-full py-2 rounded-lg bg-green-600 hover:bg-green-500 text-white font-semibold text-center transition-all">
+                        Adquirir
+                    </a>
+                </div>
+            `).join('');
+        }
+
+        // Renderizar Spotify DUO
+        function renderSpotifyDuo() {
+            const container = document.getElementById('spotify-duo-plans');
+            const plans = [
+                { duration: '1 Mes', priceKey: 'mes1', link: 'https://www.mercadopago.com.mx/subscriptions/checkout?preapproval_plan_id=8a080b16b7e74df4b058eb14ff167ca6' },
+                { duration: '3 Meses', priceKey: 'meses3', link: 'https://www.mercadopago.com.mx/subscriptions/checkout?preapproval_plan_id=c4c6ea0a03764ba6a4d3fe6a61c27d17' },
+                { duration: '6 Meses', priceKey: 'meses6', link: 'https://www.mercadopago.com.mx/subscriptions/checkout?preapproval_plan_id=c82058e163d64e59b6c53527e1270a71' },
+                { duration: '12 Meses', priceKey: 'meses12', link: 'https://www.mercadopago.com.mx/subscriptions/checkout?preapproval_plan_id=6fae0e4bfc4747c184f2d5acbea66ebd' }
+            ];
+
+            container.innerHTML = plans.map(plan => `
+                <div class="glass rounded-2xl p-6 border border-blue-500/20 card-hover">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-lg font-bold">${plan.duration}</span>
+                        <div class="flex -space-x-2">
+                            <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-xs">1</div>
+                            <div class="w-8 h-8 rounded-full bg-blue-400 flex items-center justify-center text-xs">2</div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <span class="price-strike">$${pricingConfig.spotifyDuo[plan.priceKey].normal.toFixed(2)}</span>
+                        <div class="discount-price">$${pricingConfig.spotifyDuo[plan.priceKey].discount.toFixed(2)}</div>
+                    </div>
+                    <a href="${plan.link}" target="_blank" 
+                       class="block w-full py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-center transition-all">
+                        Adquirir
+                    </a>
+                </div>
+            `).join('');
+        }
+
+        // Renderizar Bloqueo ADS
+        function renderAdsPlans() {
+            const container = document.getElementById('ads-plans');
+            const plans = [
+                { duration: '1 Mes', priceKey: 'mes1', link: 'https://www.mercadopago.com.mx/subscriptions/checkout?preapproval_plan_id=644a8bac5f2e45acb42b9f8d6fd51ae6' },
+                { duration: '2 Meses', priceKey: 'meses2', link: 'https://www.mercadopago.com.mx/subscriptions/checkout?preapproval_plan_id=fe71186a9d3f46f7bad08e8941460fe6' },
+                { duration: '3 Meses', priceKey: 'meses3', link: 'https://www.mercadopago.com.mx/subscriptions/checkout?preapproval_plan_id=b681b57da7564c7b84dac3f145ac9d9e' },
+                { duration: '6 Meses', priceKey: 'meses6', link: 'https://www.mercadopago.com.mx/subscriptions/checkout?preapproval_plan_id=2278e82756c84de0acd64ae7411e331d' },
+                { duration: '9 Meses', priceKey: 'meses9', link: 'https://www.mercadopago.com.mx/subscriptions/checkout?preapproval_plan_id=16abae47388748bcac0f266fcb6f5831' },
+                { duration: '12 Meses', priceKey: 'meses12', link: 'https://www.mercadopago.com.mx/subscriptions/checkout?preapproval_plan_id=971391adfe694471a21331c67310e80d', popular: true }
+            ];
+
+            container.innerHTML = plans.map(plan => `
+                <div class="glass rounded-2xl p-6 border ${plan.popular ? 'border-cyan-400 ring-1 ring-cyan-400/30' : 'border-white/10'} card-hover relative">
+                    ${plan.popular ? '<div class="absolute -top-3 right-4 bg-cyan-500 text-white text-xs font-bold px-3 py-1 rounded-full">RECOMENDADO</div>' : ''}
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-cyan-500/20 flex items-center justify-center">
+                            <i class="fas fa-shield-alt text-cyan-400"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Protección ${plan.duration}</h4>
+                            <p class="text-xs text-gray-400">Por dispositivo</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4 bg-black/20 rounded-lg p-3">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-xs text-gray-400">Precio regular:</span>
+                            <span class="price-strike">$${pricingConfig.bloqueoAds[plan.priceKey].normal.toFixed(2)}</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-cyan-400 font-semibold">Ahora:</span>
+                            <span class="text-xl font-bold text-cyan-400">$${pricingConfig.bloqueoAds[plan.priceKey].discount.toFixed(2)}</span>
+                        </div>
+                    </div>
+                    
+                    <a href="${plan.link}" target="_blank" 
+                       class="block w-full py-2 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-center transition-all text-sm">
+                        Contratar Servicio
+                    </a>
+                </div>
+            `).join('');
+        }
+
+        // Renderizar Testimonios
+        function renderTestimonials() {
+            const container = document.getElementById('testimonials-container');
+            const testimonials = [
+                { name: 'Alejandro M.', service: 'Spotify Premium', comment: 'Increíble servicio, la activación fue inmediata. Llevo 6 meses sin ningún problema y el ahorro es considerable.', rating: 5, avatar: 'AM' },
+                { name: 'Sofia R.', service: 'CapCut Pro', comment: 'Perfecto para mi trabajo de edición de videos. Los créditos de IA son geniales y el terabyte de almacenamiento me salvó la vida.', rating: 5, avatar: 'SR' },
+                { name: 'Carlos H.', service: 'Bloqueo de ADS', comment: 'No sabía que navegar podía ser tan rápido sin anuncios. Además me ahorra muchos datos móviles. Totalmente recomendado.', rating: 5, avatar: 'CH' },
+                { name: 'Mariana L.', service: 'Spotify Duo', service: 'Spotify DUO', comment: 'Comparto el plan con mi hermana y funciona perfecto. Cada uno tiene su cuenta independiente y pagamos mucho menos.', rating: 5, avatar: 'ML' },
+                { name: 'Diego T.', service: 'CapCut Pro', comment: 'La mejor inversión para mi canal de YouTube. La calidad de exportación y los efectos premium son profesionales.', rating: 5, avatar: 'DT' },
+                { name: 'Valeria N.', service: 'Bloqueo de ADS', comment: 'Por fin puedo ver videos tranquilamente. El soporte técnico fue muy amable al ayudarme con la configuración inicial.', rating: 5, avatar: 'VN' }
+            ];
+
+            container.innerHTML = testimonials.map((t, idx) => `
+                <div class="glass rounded-2xl p-6 border border-white/5 card-hover scroll-reveal" style="transition-delay: ${idx * 100}ms">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-500 to-purple-600 flex items-center justify-center font-bold text-white">
+                            ${t.avatar}
+                        </div>
+                        <div>
+                            <div class="font-bold text-white">${t.name}</div>
+                            <div class="text-xs text-cyan-400">${t.service}</div>
+                        </div>
+                    </div>
+                    <div class="flex text-yellow-400 text-sm mb-3">
+                        ${Array(t.rating).fill('<i class="fas fa-star"></i>').join('')}
+                    </div>
+                    <p class="text-gray-300 text-sm italic">"${t.comment}"</p>
+                </div>
+            `).join('');
+        }
+
+        // Inicializar datos bancarios
+        function initBankInfo() {
+            document.getElementById('bank-name').textContent = bankInfo.nombre;
+            document.getElementById('bank-clabe').textContent = bankInfo.clabe;
+            document.getElementById('bank-institution').textContent = bankInfo.banco;
+        }
+
+        // Scroll Reveal Animation
+        function initScrollReveal() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
+                        entry.target.classList.add('active');
                     }
                 });
             }, { threshold: 0.1 });
 
-            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+            document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
         }
 
-        // Inicialización
-        document.addEventListener('DOMContentLoaded', () => {
-            renderPlans();
-            handleIntersection();
-            
-            // Smooth scroll para navegación
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                });
-            });
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg');
+                navbar.style.background = 'rgba(10, 10, 15, 0.95)';
+            } else {
+                navbar.classList.remove('shadow-lg');
+                navbar.style.background = 'rgba(20, 20, 30, 0.7)';
+            }
         });
 
-        // Efecto parallax sutil en el fondo
-        document.addEventListener('mousemove', (e) => {
-            const x = e.clientX / window.innerWidth;
-            const y = e.clientY / window.innerHeight;
-            document.querySelector('.bg-gradient').style.transform = 
-                `translate(${x * 20}px, ${y * 20}px) scale(1.1)`;
+        // Inicializar todo
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCapCutPlans();
+            renderSpotifyIndividual();
+            renderSpotifyDuo();
+            renderAdsPlans();
+            renderTestimonials();
+            initBankInfo();
+            initScrollReveal();
         });
     </script>
 </body>
